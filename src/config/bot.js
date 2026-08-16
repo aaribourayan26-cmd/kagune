@@ -649,22 +649,13 @@ export function getRandomColor() {
 }
 
 export default botConfig;
-@bot.command()
-async def addowner(ctx, member: discord.Member):
-    if ctx.author.id not in OWNER_IDS:
-        return await ctx.send("❌ Tu n'es pas owner du bot.")
-
-    OWNER_IDS.add(member.id)
-
-    await ctx.send(f"✅ {member.mention} est maintenant owner du bot !")
-@bot.command()
-async def removeowner(ctx, member: discord.Member):
-    if ctx.author.id not in OWNER_IDS:
-        return await ctx.send("❌ Tu n'es pas owner du bot.")
-
-    if member.id not in OWNER_IDS:
-        return await ctx.send("❌ Cette personne n'est pas owner.")
-
-    OWNER_IDS.remove(member.id)
-
-    await ctx.send(f"✅ {member.mention} n'est plus owner du bot.")
+const owners = new Set([
+    "1310717272758812835"
+]);
+bot.command({
+    name: "addowner",
+    code: `
+        $setGlobalUserVar[owner;true;$mentioned[1]]
+        ✅ <@$mentioned[1]> est maintenant owner du bot !
+    `
+});
