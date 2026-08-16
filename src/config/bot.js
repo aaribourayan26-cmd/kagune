@@ -648,7 +648,7 @@ export function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
-export default botConfig;
+
 const owners = new Set([
     "1310717272758812835"
 ]);
@@ -659,3 +659,5 @@ bot.command({
         ✅ <@$mentioned[1]> est maintenant owner du bot !
     `
 });
+
+export default botConfig;
