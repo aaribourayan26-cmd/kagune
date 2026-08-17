@@ -218,6 +218,19 @@ export async function executePrefixCommand(command, message, args, client, prefi
       type: 'prefix_command',
       command: command.data?.name,
       source: 'messageAdapter.executePrefixCommand',
-    });
+    });export function supportsPrefixExecution(command) {
+  if (command.prefixOnly === false || command.slashOnly === true) {
+    return false;
   }
+
+  const commandName = command.data?.name?.toLowerCase();
+  if (commandName && SLASH_ONLY_COMMANDS.has(commandName)) {
+    return false;
+  }
+
+  if (command.prefixExecute) {
+    return true;
+  }
+
+  return !!command.execute;
 }
