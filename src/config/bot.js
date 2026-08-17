@@ -647,17 +647,8 @@ export function getRandomColor() {
   );
   return colors[Math.floor(Math.random() * colors.length)];
 }
-
-
-const owners = new Set([
-    "1310717272758812835"
-]);
-bot.command({
-    name: "addowner",
-    code: `
-        $setGlobalUserVar[owner;true;$mentioned[1]]
-        ✅ <@$mentioned[1]> est maintenant owner du bot !
-    `
-});
-
+const owners = [
+    "1310717272758812835",
+    "152937617355177984"
+];
 export default botConfig;
